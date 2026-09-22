@@ -48,7 +48,7 @@ car-cad/
 └── README.md
 ```
 
-### Year-by-year Directories
+### Year-by-Year Directories
 
 | Directory            | Contents                                                 |
 | -------------------- | -------------------------------------------------------- |
