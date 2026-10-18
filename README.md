@@ -1,121 +1,282 @@
-# Colby Formula Electric Database
+# Colby Formula Student Electric — Car CAD
 
-Central repository for Colby College's Formula Electric team documentation, design notes, and subsystem data.
+Central repository for the team's vehicle CAD, assemblies, manufacturing files, and released design revisions.
 
-## Overview
+This repository serves as the **source of vehicle CAD**. All members should follow the organization and version-control conventions below to keep the car's design history maintainable across team generations.
 
-This repository helps the team keep engineering information organized and easy to find across seasons. It is structured by subsystem so members can quickly access relevant resources for design, testing, and build decisions.
-
-Current focus areas:
-- Electrical systems
-- Structural systems
+---
 
 ## Repository Structure
 
 ```text
-CFE-Database/
-|- Electrical/
-|- Structural/
-`- README.md
+car-cad/
+│
+├── 26-27/
+│   ├── 00_Master_Assembly/
+│   ├── 01_Chassis/
+│   ├── 02_Suspension/
+│   ├── 03_Steering/
+│   ├── 04_Brakes/
+│   ├── 05_Powertrain/
+│   ├── 06_Accumulator/
+│   ├── 07_Electronics/
+│   ├── 08_Aero/
+│   ├── 09_Bodywork/
+│   └── 10_Manufacturing/
+│
+├── new-year-template/
+│   ├── 00_Master_Assembly/
+│   ├── 01_Chassis/
+│   ├── 02_Suspension/
+│   ├── 03_Steering/
+│   ├── 04_Brakes/
+│   ├── 05_Powertrain/
+│   ├── 06_Accumulator/
+│   ├── 07_Electronics/
+│   ├── 08_Aero/
+│   ├── 09_Bodywork/
+│   └── 10_Manufacturing/
+|
+├── shared/
+│   ├── fasteners/
+│   ├── bearings/
+│   ├── purchased_Components/
+│   └── hardware/
+│
+├── released/
+|
+└── README.md
 ```
 
-## Purpose
+### Year-by-Year Directories
 
-Use this repository to:
-- Track subsystem-level technical references and design rationale
-- Store standards, procedures, and calculation templates
-- Store project files and documentation in a predictable structure
-- Document testing results and lessons learned
-- Maintain continuity between graduating and incoming team members
+| Directory            | Contents                                                 |
+| -------------------- | -------------------------------------------------------- |
+| `00_Master_Assembly` | Complete vehicle assemblies and top-level CAD            |
+| `01_Chassis`         | Frame, mounts, brackets, structural components           |
+| `02_Suspension`      | Uprights, control arms, rockers, dampers, etc.           |
+| `03_Steering`        | Steering rack, column, steering wheel, linkages          |
+| `04_Brakes`          | Pedal box, calipers, rotors, brake mounts                |
+| `05_Powertrain`      | Motors, motor mounts, drivetrain components              |
+| `06_Accumulator`     | Accumulator enclosure, mounting, cooling, HV components  |
+| `07_Electronics`     | Electronics enclosures, mounts, sensors, wiring hardware |
+| `08_Aero`            | Wings, endplates, mounts, aerodynamic structures         |
+| `09_Bodywork`        | Body panels, covers, driver interface components         |
+| `10_Manufacturing`   | Manufacturing-specific files, drawings, jigs, fixtures   |
 
-## Getting Started
+---
 
-1. Clone the repository.
-2. Create or open files in the appropriate subsystem folder.
-3. Use clear file names with dates when relevant.
-4. Commit changes with a concise, descriptive message.
+## Branching
 
-## Naming and Organization Conventions
+The `main` branch represents the **current stable vehicle design**.
 
-### Folder Organization
-
-- Top-level folders are team subsystems: `Electrical` and `Structural`.
-- Each subsystem contains subsection folders (for example: `Chassis`, `Suspension`, `Battery Management`).
-- Each subsection folder should include:
-	- Technical files for that subsection
-	- A local `README.md` with an entry for each file with: Author, Date and File details
-
-### Folder Naming
-
-- Use Title Case for folders.
-- Use spaces only when needed.
-- Examples: `Chassis`, `Suspension`, `Battery Management`
-
-### File Naming
-
-- Use lowercase and underscores for file names.
-- Recommended format:
+For changes, create a feature branch:
 
 ```text
-subsection_author_yyyy_mm_dd.ext
+feature/front-upright-revision
+feature/rear-wing-mount
+feature/accumulator-enclosure
 ```
 
-- Example:
+Do not make experimental or incomplete changes directly on `main`
+
+The `main` should only be edited or changed by team leads
+
+## Commit Messages
+
+Commit messages should clearly describe the engineering change.
+
+### Good
 
 ```text
-battery_management_kevin_gustafson_2026_03_12.csv
+Suspension: revise front upright mounting geometry
+Chassis: add motor mount reinforcement
+Aero: update front wing endplate
+Accumulator: revise enclosure mounting tabs
+Manufacturing: add CNC drawing for rear upright
 ```
 
-- Every folder-level documentation file should be named exactly:
+### Avoid
 
 ```text
-README.md
+update
+changes
+stuff
+fixed
+new cad
+asdf
 ```
 
-### Commit Message Convention
+Please sign each commit with your name, keep messages concise but encompass all changes or additions you have made, more is better than less.
 
-- Format:
+---
+
+## Released Designs
+
+The `Released/` directory contains CAD that has been formally released for a specific purpose.
+
+Examples:
 
 ```text
-Subsystem/Subsection: short action summary
+Released/
+├── 2027-design-freeze/
+└── 2027-competition-configuration/
 ```
 
-- Examples:
+Released files should **not be modified**.
+
+If a released component needs to change, create a new revision rather than modifying the old released version in place.
+
+---
+
+## CAD Revision Philosophy
+
+CAD should be treated as an engineering record, not simply a collection of files.
+
+When making a substantial design change:
+
+1. Create a branch.
+2. Make the CAD changes.
+3. Verify assembly references.
+4. Check for interference/errors.
+5. Update associated drawings.
+6. Update the BOM if necessary.
+7. Have the relevant subsystem member review the change.
+8. Have a team lead merge into `main`.
+
+---
+
+## Purchased Components
+
+Purchased components should be stored in:
 
 ```text
-Electrical/Battery Management: add BMS fault log template
-Structural/Chassis: update weld inspection checklist
+Shared/Purchased_Components/
 ```
 
-## Contribution Guidelines
+Where possible, retain the manufacturer's original CAD file without modifying it.
 
-When committing a file to a subsection, be sure to add the relevant metadata to the subsections README, as detailed in Folder Organization
+Use descriptive names:
 
-- Keep files subsystem-specific when possible.
-- Add short context at the top of technical notes:
-	- Author
-	- Date
-	- Version
-	- Status (Draft, Review, Approved)
-- Avoid deleting historical data unless it is duplicated or incorrect.
+```text
+SKF_6005_2RS.SLDPRT
+Brembo_Caliper_ModelX.STEP
+Motor_Model_ABC.STEP
+```
 
-## Data Quality Standards
+If a purchased component is modified for integration, save the modified version separately and clearly identify it as such.
 
-- Include units in all calculations and tables.
-- Cite assumptions and references for major decisions.
-- For test data, include setup details and pass/fail criteria.
-- For design updates, briefly state what changed and why.
 
-## Academic and Team Use
+---
 
-This repository is intended for educational and team engineering use at Colby College. Follow campus safety and lab policies when documenting manufacturing, battery, and high-voltage procedures.
+## Folder Naming
 
-## Credits
+Folder names should be all lowercase, with spaces replaced with `-`:
 
-- Colby College Formula Electric Team members and leadership
-- Faculty advisors and lab staff supporting team operations
-- Student contributors maintaining subsystem documentation and data quality
+```text
+26-27
+04-brakes
+new-year-template
+```
 
-## Contact
+## File Naming
 
-For access, structure changes, or onboarding questions, contact the current Colby Formula Electric team leadership at cfe@colby.edu.
+Use descriptive, consistent names. Replace spaces with `_` and capitalize. **Do not delete prior file versions** - instead add `_v#` to your file name (see below for examples)
+
+### Preferred
+
+```text
+Front_Upright_v8.SLDPRT
+Front_Control_Arm_Upper.SLDPRT
+Motor_Mount_Left_v2.SLDPRT
+Accumulator_Enclosure_v7.SLDASM
+Rear_Wing_Mainplane.SLDPRT
+```
+
+### Avoid
+
+```text
+Part1.SLDPRT
+NewPart.SLDPRT
+Final.SLDPRT
+Final_Final.SLDPRT
+New_Upright_2_REAL_FINAL.SLDPRT
+```
+
+Avoid using names such as `FINAL`, `NEW`, or `LATEST` to indicate revisions. Git history and releases should handle versioning.
+
+---
+
+## Do Not Commit
+
+Do not commit:
+
+* Temporary exports
+* Personal notes
+* Duplicate CAD files
+* Screenshots unless specifically required
+* Local software cache files
+* Autosave/recovery files
+* Unnecessary rendered images
+* Credentials or API keys
+* Personal files
+
+Use `.gitignore` for software-specific temporary files.
+
+---
+
+## Design Philosophy
+
+The purpose of this repository is not simply to store CAD.
+
+It should preserve the team's **engineering history**.
+
+A future team member should be able to answer:
+
+* What did the car look like?
+* Why was a component changed?
+* Who reviewed the change?
+* Which version was manufactured?
+* Which CAD revision corresponds to a physical part?
+* What was the competition configuration?
+* What designs were eventually abandoned?
+
+When in doubt, favor **traceability and clarity** over convenience.
+
+---
+
+## Competition Configuration
+
+Before competition, create a clearly identified snapshot of the vehicle's final configuration.
+
+Example:
+
+```text
+Released/
+└── 2027_Competition_Configuration/
+    ├── Master_Assembly/
+    ├── Manufacturing/
+    ├── Drawings/
+    └── BOM/
+```
+
+This represents the CAD configuration corresponding to the physical vehicle submitted for competition.
+
+---
+
+## For New Team Members
+
+Before modifying vehicle CAD:
+
+1. Read this README.
+2. Learn the team's CAD software workflow.
+3. Identify the subsystem you are working on.
+4. Pull the latest version of the repository.
+5. Make changes on a feature branch.
+6. Do not overwrite another member's work.
+7. Ask the subsystem lead if you are unsure about a design decision.
+8. Keep assemblies and references intact.
+9. Document significant engineering changes.
+10. Make your commits understandable to someone who was not involved in the work.
+
+**Build the car. Preserve the knowledge.**
