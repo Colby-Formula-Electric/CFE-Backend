@@ -68,19 +68,9 @@ car-cad/
 
 ## Branching
 
-The `main` branch represents the **current stable vehicle design**.
+**DO NOT TOUCH MAIN BRANCH UNLESS YOU ARE IN CHARGE OF THE GITHUB**
 
-For changes, create a feature branch:
-
-```text
-feature/front-upright-revision
-feature/rear-wing-mount
-feature/accumulator-enclosure
-```
-
-Do not make experimental or incomplete changes directly on `main`
-
-The `main` should only be edited or changed by team leads
+Main branch represents the current *approved* state of the clubs file system and car. There should be incredibly few people merging with main, and there should never be a commit to main. Files should be committed to the *pre approval* branch, then the member in charge of the GitHub should merge that branch with main after approving file changes.
 
 ## Commit Messages
 
@@ -129,23 +119,6 @@ If a released component needs to change, create a new revision rather than modif
 
 ---
 
-## CAD Revision Philosophy
-
-CAD should be treated as an engineering record, not simply a collection of files.
-
-When making a substantial design change:
-
-1. Create a branch.
-2. Make the CAD changes.
-3. Verify assembly references.
-4. Check for interference/errors.
-5. Update associated drawings.
-6. Update the BOM if necessary.
-7. Have the relevant subsystem member review the change.
-8. Have a team lead merge into `main`.
-
----
-
 ## Purchased Components
 
 Purchased components should be stored in:
@@ -165,7 +138,6 @@ Motor_Model_ABC.STEP
 ```
 
 If a purchased component is modified for integration, save the modified version separately and clearly identify it as such.
-
 
 ---
 
@@ -242,25 +214,6 @@ A future team member should be able to answer:
 * What designs were eventually abandoned?
 
 When in doubt, favor **traceability and clarity** over convenience.
-
----
-
-## Competition Configuration
-
-Before competition, create a clearly identified snapshot of the vehicle's final configuration.
-
-Example:
-
-```text
-Released/
-└── 2027_Competition_Configuration/
-    ├── Master_Assembly/
-    ├── Manufacturing/
-    ├── Drawings/
-    └── BOM/
-```
-
-This represents the CAD configuration corresponding to the physical vehicle submitted for competition.
 
 ---
 
